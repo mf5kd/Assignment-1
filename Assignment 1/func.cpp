@@ -13,10 +13,10 @@ int SearchArr(int array[], int &usrInput, int &size) {
     int count = 0;
     while (true) {
         if (count == size) {
-            return -1;
+            return -1;  // Return -1 to indicate value is not found
         }
         else if ( array[count] == usrInput) {
-            return count;
+            return count; // Return the index of the matching element
         }
         count++;
     }
@@ -25,17 +25,17 @@ int SearchArr(int array[], int &usrInput, int &size) {
 int ReaplceArr(int array[], int& usrInput, int& index, int& size) {
     int oldValue = array[index];
     if (index >= size)
-        return -2;
-    array[index] = usrInput;
-    return oldValue;
+        return -2;  // Return -2 to indicate invalid index
+    array[index] = usrInput; 
+    return oldValue; // Return the old value that was replaced
 }
 
 int* AddToArr(int* array, int& usrInput, int& size) {
     int newSize = size + 1; 
     int* tempArr = new int[newSize];
-    copy(array, array + size, tempArr);
-    delete[] array;
-    array = tempArr;
+    copy(array, array + size, tempArr);  // Copy the contents of the old array to the new array
+    delete[] array; // Free the memory of the old array
+    array = tempArr; // Point the original array pointer to the new array
     array[size] = usrInput;
     size += 1;
     return array;
@@ -46,14 +46,16 @@ int* RemoveFromArr(int* array, int& index, int& size) {
     int newSize = size - 1;
     int* tempArr = new int[newSize];
     int count = -1;
+    // Copy the contents of the old array to the new array
     for (int x = 0; x < size; x++) {
-        if (array[x] == 0)
+        if (array[x] == 0) // Skip the element that should be deleted
             continue;
         count++;
         tempArr[count] = array[x];
     }
-    delete[] array;
-    array = tempArr;
+
+    delete[] array; // Free the memory of the old array
+    array = tempArr; // Point the original array pointer to the new array
     size = newSize;
     return array;
 }
